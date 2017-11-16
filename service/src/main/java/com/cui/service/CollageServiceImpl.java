@@ -1,0 +1,134 @@
+package com.cui.service;
+
+
+
+import com.cui.dao.mapper.CollageMapper;
+import com.cui.fs.model.Collage;
+import com.cui.fs.api.CollageService;
+import com.cui.fs.util.BaseResponseVo;
+import com.cui.fs.util.PageInfo;
+import com.cui.fs.util.PageUtil;
+import lombok.NonNull;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
+import java.util.Map;
+
+/**
+ * Created by cjs
+ * Date： 2017/10/25.
+ * Time： 14:43.
+ */
+@Service("collageService")
+public class CollageServiceImpl implements CollageService {
+
+    private static Logger logger = LoggerFactory.getLogger(CollageServiceImpl.class.getName());
+
+    @Autowired
+    private CollageMapper collageMapper;
+    /**
+     * 分页获取
+     *
+     * @param map
+     * @return
+     */
+    @Override
+    public BaseResponseVo getCollagePage(Map map) {
+        logger.info("Begin--getCollagePage--map={}",map);
+        BaseResponseVo baseResponseVo =new BaseResponseVo();
+        try{
+            Integer pageIndex = (Integer)map.get("pageIndex");
+            Integer collageCount = collageMapper.getCollageCount(map);
+            PageInfo pageInfo=new PageInfo();
+            PageUtil.setPageInfo(pageInfo,collageCount,pageIndex,30);
+            int startIndex = PageUtil.getStartIndex(pageIndex, 30);
+            map.put("pageIndex",startIndex);
+            map.put("pageSize",30);
+            List<Collage> collageList = collageMapper.getCollageList(map);
+            baseResponseVo.setData(collageList);
+            baseResponseVo.setPageInfo(pageInfo);
+            baseResponseVo.setIsSuccess(true);
+        }catch (Exception e){
+            logger.error("error--getCollagePage--e={}",e);
+            baseResponseVo.setIsSuccess(false);
+        }
+        return baseResponseVo;
+    }
+
+    @Override
+    @Transactional(rollbackFor = Exception.class)
+    public BaseResponseVo addCollage(@NonNull Collage cp) {
+        logger.info("Begin--addCollage--cp={}",cp);
+        BaseResponseVo baseResponseVo =new BaseResponseVo();
+        try {
+            int i = collageMapper.addCollage(cp);
+            if(i<1){
+                baseResponseVo.setIsSuccess(false);
+                return   baseResponseVo;
+            }
+            baseResponseVo.setMessage("添加成功");
+            baseResponseVo.setIsSuccess(true);
+        }catch (Exception e){
+           logger.error("error--addCollage--e{}",e);
+            baseResponseVo.setIsSuccess(false);
+        }
+        return baseResponseVo;
+    }
+
+    @Override
+    @Transactional(rollbackFor = Exception.class)
+    public BaseResponseVo updateCollage(Collage cp) {
+        logger.info("Begin--updateCollage--cp={}",cp);
+        BaseResponseVo baseResponseVo =new BaseResponseVo();
+        try {
+            int i = collageMapper.updateCollage(cp);
+            if(i<1){
+                baseResponseVo.setIsSuccess(false);
+                return   baseResponseVo;
+            }
+            baseResponseVo.setIsSuccess(true);
+        }catch (Exception e){
+            logger.error("error--updateCollage--e{}",e);
+            baseResponseVo.setIsSuccess(false);
+        }
+        return baseResponseVo;
+    }
+
+    @Override
+    @Transactional(rollbackFor = Exception.class)
+    public BaseResponseVo delCollage(Integer id) {
+        logger.info("Begin--delCollage--id={}",id);
+        BaseResponseVo baseResponseVo =new BaseResponseVo();
+        try {
+            int i = collageMapper.delCollage(id);
+            if(i<1){
+                baseResponseVo.setIsSuccess(false);
+                return   baseResponseVo;
+            }
+            baseResponseVo.setIsSuccess(true);
+        }catch (Exception e){
+            logger.error("error--delCollage--e{}",e);
+            baseResponseVo.setIsSuccess(false);
+        }
+        return baseResponseVo;
+    }
+
+    @Override
+    public BaseResponseVo getCollageById(Integer id) {
+        logger.info("Begin--getCollageById--id={}",id);
+        BaseResponseVo baseResponseVo =new BaseResponseVo();
+        try {
+            Collage cp = collageMapper.getCollageById(id);
+            baseResponseVo.setIsSuccess(true);
+            baseResponseVo.setData(cp);
+        }catch (Exception e){
+            logger.error("error--delCollage--e{}",e);
+            baseResponseVo.setIsSuccess(false);
+        }
+        return baseResponseVo;
+    }
+}

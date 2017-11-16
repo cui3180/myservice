@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>myservcie</artifactId>
+        <groupId>com.cui</groupId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+    <artifactId>web</artifactId>
+    <packaging>war</packaging>
+
+    <dependencies>
+        <!--<dependency>
+            <groupId>com.cui</groupId>
+            <artifactId>service</artifactId>
+            <version>1.0</version>
+            <scope>system</scope>
+            <systemPath>${basedir}/temp/client-1.0.jar</systemPath>
+        </dependency>
+        <dependency>
+            <groupId>dao</groupId>
+            <artifactId>dao</artifactId>
+            <version>1.0.10</version>
+            <scope>system</scope>
+            <systemPath>${basedir}/temp/dao-1.0.jar</systemPath>
+        </dependency>-->
+        <dependency>
+            <groupId>com.cui</groupId>
+            <artifactId>service</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>com.cui</groupId>
+            <artifactId>dao</artifactId>
+            <version>1.0</version>
+        </dependency>
+    </dependencies>
+</project>
