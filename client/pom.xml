@@ -25,8 +25,8 @@
             <version>1.0</version>
         </dependency>-->
     </dependencies>
-    <build>
-        <finalName>recordcenter-client-${version}</finalName>
+   <!-- <build>
+        <finalName>client-${version}</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -51,5 +51,5 @@
                 </configuration>
             </plugin>
         </plugins>
-    </build>
+    </build>-->
 </project>

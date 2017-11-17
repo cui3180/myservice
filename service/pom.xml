@@ -16,5 +16,20 @@
             <artifactId>dao</artifactId>
             <version>1.0</version>
         </dependency>
+       <!-- <dependency>
+            <groupId>dao</groupId>
+            <artifactId>dao</artifactId>
+            <version>1.0.10</version>
+            <scope>system</scope>
+            <systemPath>${basedir}/temp/dao-1.0.jar</systemPath>
+        </dependency>
+        <dependency>
+            <groupId>clien</groupId>
+            <artifactId>clien</artifactId>
+            <version>1.0.10</version>
+            <scope>system</scope>
+            <systemPath>${basedir}/temp/client-1.0.jar</systemPath>
+        </dependency>-->
     </dependencies>
+
 </project>

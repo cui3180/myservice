@@ -2,7 +2,6 @@ package com.cui.web;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
-import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
 /**
@@ -17,12 +16,8 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 
         // 映射 /static 的请求到 classpath 下的 static 目录
 
-        registry.addResourceHandler("/static/**")
-                .addResourceLocations("classpath:/static/");
+        registry.addResourceHandler("/layui/**")
+                .addResourceLocations("classpath:/layui/");
     }
-    @Override
-    public void addViewControllers(ViewControllerRegistry registry) {
-        registry.addViewController("/login").setViewName("/login");
-        registry.addViewController("/chat").setViewName("/chat");
-    }
+
 }

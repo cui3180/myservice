@@ -29,6 +29,8 @@ public class CollageController {
     public String getUser(User user){
         user.setUserName("sfsdf");
         logger.info("Begin--getUser--user{}",user);
+
+
         return "/collage/index";
     }
     @RequestMapping(value = "add")
@@ -36,6 +38,7 @@ public class CollageController {
         BaseResponseVo baseResponseVo = collageService.addCollage(collage);
         return baseResponseVo;
     }
+
 
 
 }
